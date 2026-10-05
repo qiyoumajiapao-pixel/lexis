@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>闪卡 · 英语核心词</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<meta name="apple-mobile-web-app-title" content="Lexis">
+<meta name="application-name" content="Lexis">
+<link rel="apple-touch-startup-image" href="icons/splash-1170x2532.png" media="(device-width:390px) and (device-height:844px) and (-webkit-device-pixel-ratio:3)">
+<link rel="apple-touch-startup-image" href="icons/splash-1284x2778.png" media="(device-width:428px) and (device-height:926px) and (-webkit-device-pixel-ratio:3)">
+<link rel="apple-touch-startup-image" href="icons/splash-1125x2436.png" media="(device-width:375px) and (device-height:812px) and (-webkit-device-pixel-ratio:3)">
+<link rel="apple-touch-startup-image" href="icons/splash-828x1792.png" media="(device-width:414px) and (device-height:896px) and (-webkit-device-pixel-ratio:2)">
+<link rel="apple-touch-startup-image" href="icons/splash-750x1334.png" media="(device-width:375px) and (device-height:667px) and (-webkit-device-pixel-ratio:2)">
+<link rel="apple-touch-startup-image" href="icons/splash-1536x2048.png" media="(device-width:768px) and (device-height:1024px) and (-webkit-device-pixel-ratio:2)">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='26'>🃏</text></svg>">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<div id="app">
+  <header>
+    <button class="iconbtn" id="btnAuto" title="极速连播">&#9889;</button>
+    <div class="bar">
+      <div class="row"><b id="cntMain">准备中</b><small id="cntSub"></small></div>
+      <div class="track"><i id="bar"></i></div>
+    </div>
+    <button class="iconbtn" id="btnSound" title="发音">🔊</button>
+    <button class="iconbtn" id="btnWords" title="查看词库">📚</button>
+    <button class="iconbtn" id="btnFixed" title="固定随机刷库">🔀</button>
+    <button class="iconbtn" id="btnMenu" title="设置">&#9881;</button>
+  </header>
+
+  <main>
+    <div id="card" class="hidden">
+      <div class="tag">
+        <span class="pill" id="tType">认词</span>
+        <span class="pill" id="tLv">新</span>
+        <span class="sp"></span>
+        <span id="tSpeak"></span>
+      </div>
+      <div id="face">
+        <div class="q" id="qEl">载入中…</div>
+        <div class="a" id="aEl"></div>
+        <div class="ph" id="phEl"></div>
+      </div>
+      <div class="hint" id="hintEl"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="acts2" id="actRow">
+      <button class="btn no" id="btnNo">不认识 <span class="k">←</span></button>
+      <button class="btn ok" id="btnOk">认识 <span class="k">&#8594;</span></button>
+    </div>
+    <div class="acts2" id="fixedActRow" style="display:none">
+      <button class="btn ghost" id="fixedPrev">← 上一词</button>
+      <button class="btn ok" id="fixedNext">下一词 →</button>
+    </div>
+    <div class="sub" id="normalSub">
+      <button class="chip" id="chipPlay">&#9654; 极速连播</button>
+      <button class="chip" id="chipSpeakOn">🔊 自动发音</button>
+      <button class="chip" id="chipZhFirst">中文先出现</button>
+      <button class="chip" id="chipUndo">&#8630; 撤销</button>
+    </div>
+    <div class="sub" id="fixedSub" style="display:none">
+      <button class="chip" id="fixedAuto">&#9654; 固定自动连播</button>
+      <button class="chip" id="fixedSpeak">🔊 自动发音</button>
+      <button class="chip" id="fixedReset">↺ 从第1遍开始</button>
+      <button class="chip" id="fixedExit">✕ 退出刷库</button>
+    </div>
+  </footer>
+</div>
+
+<div class="sheet" id="sheet">
+  <div class="panel" id="panel"></div>
+</div>
+<div id="toast"></div>
+
+<script src="data/bank.js"></script>
+<script src="app.js"></script>
+<script src="audio.js"></script>
+<script src="store.js"></script>
+<script src="backup.js"></script>
+<script src="patch.js"></script><script src="pwa.js"></script>
+
+</body>
+</html>
