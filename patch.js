@@ -1321,6 +1321,32 @@
     };
   });
 
+  /* ==================================================================
+     V8 · 词库缺失诊断：部署时最容易漏掉词库文件，这里给出可照着修的提示
+     ================================================================== */
+  var LEXI_BANK_DIAG = (function () {
+    try {
+      var has = !!(window.LEXI_DATA && window.LEXI_DATA.w && window.LEXI_DATA.w.length);
+      if (has) return { ok: true, n: window.LEXI_DATA.w.length };
+      var srcs = [];
+      var ss = document.scripts;
+      for (var i = 0; i < ss.length; i++) if (ss[i].src) srcs.push(ss[i].src.split("/").slice(-2).join("/"));
+      setTimeout(function () {
+        try {
+          var box = document.querySelector("#face .empty") || document.querySelector("#face");
+          if (!box) return;
+          var hint = window.LEXI_DATA === undefined
+            ? "词库文件没有加载（LEXI_DATA 未定义）。\n多半是上传时少了词库文件：\n· 若是 PWA 版：确认 index.html 与它同目录下有能提供词库的文件\n· 若是单文件版：确认这个 html 没有被其他工具改写\n已加载的脚本：" + (srcs.join(" / ") || "（无外部脚本）")
+            : "词库文件加载了，但内容为空（0 个单词）。\n请重新上传完整的词库文件。";
+          box.innerHTML = '<div style="text-align:left;font-size:13px;line-height:1.9;color:var(--fg2)">' +
+            "<b>词库没有加载成功</b><br>" + hint.replace(/\n/g, "<br>") +
+            "<br><br>当前地址：" + location.href + "</div>";
+        } catch (e) { }
+      }, 300);
+      return { ok: false };
+    } catch (e) { return { ok: false, err: String(e) }; }
+  })();
+
   /* ============================ 启动 ============================ */
   loadLog();
   pruneLog();
